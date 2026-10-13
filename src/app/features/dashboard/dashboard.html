@@ -1,0 +1,20 @@
+<h2>{{ greeting() }}</h2>
+<p>Here's what's happening on the moonbase.</p>
+
+<section class="status-container">
+  @for (card of statusCards(); track card.id) {
+    <app-card 
+      [card]="card"
+      [class.selected]="selectedCardId() === card.id"
+      [attr.aria-label]="selectedCardId() === card.id 
+      ? `${card.title} currently selected` : `${card.title}`"
+      (selected)="selectCard($event)">
+    </app-card>
+  }
+</section>
+
+@if(selectedCardId()) {
+  <p>Card selected: {{ selectedCardId() }}</p>
+} @else {
+  <p>Select a card to see available actions.</p>
+}

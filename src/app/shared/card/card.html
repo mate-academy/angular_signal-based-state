@@ -1,0 +1,8 @@
+<button class="status-card status-card--{{ card().icon }}" (click)="selectCard()">
+  <mat-icon [fontIcon]="card().icon"></mat-icon>
+  <div class="content">
+    <h3>{{ card().title }}</h3>
+    <span>{{ card().value }}</span>
+  </div>
+  <p class="updated">Last updated: {{ card().lastUpdated | date: 'mediumTime' }}</p>
+</button>

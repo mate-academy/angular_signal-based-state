@@ -1,0 +1,73 @@
+@use '@angular/material' as mat;
+
+@mixin status-card-icon($modifier, $icon-color, $bg-color) {
+  &.status-card--#{$modifier} mat-icon {
+    color: $icon-color;
+    background-color: $bg-color;
+  }
+}
+
+:host {
+  display: flex;
+  width: 100%;
+}
+
+:host(.selected) {
+  .status-card {
+    @include mat.elevation(8, black, 0.8);
+  }
+}
+
+.status-card {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: .5rem;
+  column-gap: .5rem;
+  row-gap: 1.5rem;
+  background-color: #fff;
+  border-radius: .5rem;
+  padding: 2rem 1rem 0;
+  @include mat.elevation(3, black, 0.4);
+  border: none;
+  position: relative;
+  text-align: left;
+
+  mat-icon {
+    font-size: 1.3rem;
+    padding: .6rem;
+    height: 1.3rem;
+    width: 1.3rem;
+    border-radius: 50%;
+    background-color: #e8edfd;
+  }
+
+  h3 {
+    font-weight: 400;
+    font-size: .7rem;
+    margin: 0
+  }
+
+  span {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: .3rem 0;
+  }
+
+  .updated {
+    font-size: .7rem;
+    color: grey;
+    flex: 0 0 100%;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  @include status-card-icon('rocket', #4868e9, #e8edfd);
+  @include status-card-icon('check', #5a896c, #ddf0e3);
+  @include status-card-icon('report', #df3d48, #fde7e9);
+  @include status-card-icon('error', #b91c1c, #fecaca);
+}
