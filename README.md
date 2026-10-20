@@ -5,9 +5,16 @@ Zadanie z modułu Angular. Repozytorium zawiera kod startowy aplikacji Moonbase 
 ## Zadanie
 
 #### Podłącz pozostałe karty Dashboardu do rzeczywistych danych
-Karty `Total Missions` i `Active Missions` wykorzystują już wartości wyliczane na podstawie danych z `MissionsService`. Karty dotyczące incydentów nadal zawierają wartości wpisane na stałe.
+W filmie karty `Total Missions` i `Active Missions` zaczęły korzystać z wartości wyliczanych na podstawie danych z `MissionsService`. Karty dotyczące incydentów nadal zawierają wartości wpisane na stałe.
 
 Rozszerz aplikację o dane dotyczące incydentów i wykorzystaj je w Dashboardzie.
+
+#### 0. Powtórz kroki z filmu
+W kodzie startowym wszystkie karty mają jeszcze wartości wpisane na stałe. Zacznij od kart misji:
+
+- wstrzyknij `MissionsService` do komponentu `Dashboard` za pomocą `inject()`,
+- utwórz `totalMissions` i `activeMissions` za pomocą `computed()` na podstawie `missions.value()`,
+- zamień `statusCards` na sygnał `computed()`, który odczytuje `totalMissions()` i `activeMissions()`.
 
 #### 1. Utwórz model danych dla incydentów
 W folderze `features/incidents`:
@@ -27,6 +34,7 @@ export enum IncidentSeverity {
 
 ```
 export interface Incident {
+  id: string;
   title: string;
   description: string;
   severity: IncidentSeverity;
@@ -56,10 +64,9 @@ Utwórz sygnały `computed()`, które będą wyliczały:
 - liczbę incydentów, których `severity` ma wartość `IncidentSeverity.Critical`.
 
 #### 5. Zaktualizuj UI
-Podłącz wyliczone wartości do kart:
+- Zmień tytuł karty `Open Incidents` na `Total Incidents`.
+- Podłącz wyliczone wartości do kart `Total Incidents` oraz `Critical Incidents`.
 
-- Total Incidents,
-- Critical Incidents.
 Sprawdź, czy wartości kart odpowiadają danym pobranym przez `IncidentsService`.
 
 #### Efekt
